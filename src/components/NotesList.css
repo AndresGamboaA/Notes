@@ -1,11 +1,8 @@
 
 .notesList {
-    width: 100vw;
-    height: 100vh;
-    padding: 1.5em;
-    overflow: scroll;
-    overflow-x: hidden;
-    columns: 3 250px;
+    padding: 1.7em;
+    overflow: visible;
+    columns: 4 250px;
     column-gap: 0.5em;
-    
+    margin-top: -24px;
 }

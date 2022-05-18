@@ -42,7 +42,7 @@ box-shadow: 0px 0px 8px -3px rgba(105,105,105,1);
 }
 
 .note:hover  .note-options {
-    opacity: 0.7;
+    opacity: 0.8;
     transition: all 0.5s;
 }
 .note:hover  .select-button {
@@ -62,6 +62,7 @@ button {
     border-radius: 50%;
     transition: all 0.2s;
 }
+
 .option-icons:hover {
     background-color: rgb(172, 172, 172);
     transition: all 0.2s;
