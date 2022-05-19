@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPalette, faEllipsisV, faAdd } from '@fortawesome/free-solid-svg-icons'
+import { faPalette, faEllipsisV } from '@fortawesome/free-solid-svg-icons'
 import './CreateNoteInput.css'
 
 function CreateNoteInput(props) {
@@ -11,14 +11,6 @@ function CreateNoteInput(props) {
 
     return (
         <div className={classes}>
-            {isActive && <button className="add" onClick={()=>{
-                props.onSubmit({id:"", color:"#ffffff",tags:[],  title:title, text:note});
-                setActive(false);
-                setTitle("");
-                setNote("");
-            }}>
-                <span className="option-icons"><FontAwesomeIcon icon={faAdd} size="2x" color="black"/></span>
-            </button>}  
             {isActive && <input type="text" placeholder="Title" 
                 onFocus={()=>setActive(true)}
                 onChange={(e)=>{setTitle(e.target.value)}}
@@ -26,14 +18,31 @@ function CreateNoteInput(props) {
             />}
             <textarea
                 placeholder="Create note..."
-                onFocus={()=>setActive(true)}
+                onFocus={()=>{
+                    setActive(true)
+                }}
                 onChange={(e)=>{ setNote(e.target.value); }}
                 onBlur={(e)=>{ console.log("hola")}}
-                value={note}>
+                value={note}>    
             </textarea>
             {isActive && <div className="create-note-options-container">
-                <button><span className="option-icons"><FontAwesomeIcon icon={faPalette} size="lg" color="black"/></span></button>
-                <button><span className="option-icons"><FontAwesomeIcon icon={faEllipsisV} size="lg" color="black"/></span></button>
+                <div >
+                     <button className="action" onClick={()=>{
+                        props.onSubmit({id:"", color:"#ffffff",tags:[],  title:title, text:note});
+                        setActive(false);
+                        setTitle("");
+                        setNote("");
+                     }}>Add</button>
+                     <button className="action" onClick={()=>{
+                        setActive(false);
+                        setTitle("");
+                        setNote("");
+                     }}>Close</button>
+                </div>
+                <div>
+                    <button><span className="option-icons"><FontAwesomeIcon icon={faPalette} size="lg" color="black"/></span></button>
+                    <button><span className="option-icons"><FontAwesomeIcon icon={faEllipsisV} size="lg" color="black"/></span></button>
+                </div>
             </div>}
         </div>
     )

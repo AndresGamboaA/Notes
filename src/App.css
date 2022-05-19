@@ -1,9 +1,12 @@
 .App {
   height: 100vh;
-  text-align: center;
+  overflow-y: scroll;
+  box-sizing:border-box;
+}
+
+.app-container {
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
 }
 
 .App-logo {
