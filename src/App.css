@@ -7,6 +7,16 @@
 .app-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.watermark {
+  font-size: 12px;
+  position: fixed;
+  bottom: -45px;
+  left: 8px;
+  z-index: 1;
+  background-color: white;
 }
 
 .App-logo {

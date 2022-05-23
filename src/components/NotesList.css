@@ -1,8 +1,10 @@
 
 .notesList {
-    padding: 1.7em;
-    overflow: visible;
+    border: 1px solid transparent;
+    overflow: hidden;
     columns: 4 250px;
-    column-gap: 0.5em;
-    margin-top: -24px;
+    column-gap: 0.25em;
+    margin: 1.5em;
+    padding: 5px;
+    margin-top: -10px;
 }

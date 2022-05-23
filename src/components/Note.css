@@ -2,22 +2,24 @@
     -webkit-column-break-inside: avoid;
     max-width: 100%;
     min-width: 100px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    padding: 1em;
-    margin-bottom: 0.5em;
+    padding: 0.25em;
+}
+
+.card {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     border: 1px solid rgba(158, 158, 158, 0.426);
-    transition: all 0.2s;
+    transition: all 0.1s;
     position: relative;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 0.8em;
+    box-sizing: content-box;
 }
 
 
-
-.note:hover {
-    border: 1px solid rgba(109, 109, 109, 0.426);
+.card:hover {
     -webkit-box-shadow: 0px 0px 8px -3px rgba(105,105,105,1);
 -moz-box-shadow: 0px 0px 8px -3px rgba(105,105,105,1);
 box-shadow: 0px 0px 8px -3px rgba(105,105,105,1);
@@ -32,6 +34,10 @@ box-shadow: 0px 0px 8px -3px rgba(105,105,105,1);
     transition: all 0.2s;
 }
 
+.selected {
+    border: 2px solid black;
+}
+
 .note-options {
     height: 100%;
     display: flex;
@@ -42,7 +48,7 @@ box-shadow: 0px 0px 8px -3px rgba(105,105,105,1);
 }
 
 .note:hover  .note-options {
-    opacity: 0.8;
+    opacity: 1;
     transition: all 0.5s;
 }
 .note:hover  .select-button {
@@ -73,6 +79,7 @@ p {
     width: 100%;
     min-height: 60px;
     text-align: left;
+    white-space: pre-wrap;
 }
 
 
@@ -94,11 +101,11 @@ button {
 }
 
 .tag {
-    color: rgb(63, 63, 63);
+    color: rgb(55, 55, 55);
     font-size: 12px;
     padding: 5px 10px;
     border-radius: 10px;
-    background-color: rgba(167, 167, 167, 0.268);
+    background-color: rgba(0, 0, 0, 0.083);
     margin-right: 7px;
     margin-bottom: 6px;
 }
