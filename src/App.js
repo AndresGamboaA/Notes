@@ -23,6 +23,7 @@ class App extends React.Component {
     this.handleSelectionCanceled = this.handleSelectionCanceled.bind(this);
     this.handleNoteDeleted = this.handleNoteDeleted.bind(this);
     this.handleDeleteSeleted = this.handleDeleteSeleted.bind(this);
+    this.handleColorSelected = this.handleColorSelected.bind(this);
   }
 
   handleNoteAdded(note) {
@@ -79,10 +80,22 @@ class App extends React.Component {
   }
 
   handleDeleteSeleted() {
-    console.log("delete")
     const notes = this.state.notes.filter(item=>item.selected !== true);
     this.setState({
       selectedCount:0,
+      notes: notes,
+    });
+  }
+
+  handleColorSelected(color) {
+    const notes = this.state.notes.map(item=>{
+      if (item.selected) {
+        item.color = color;
+      }
+      return item;
+    });
+    this.setState({
+      ...this.state,
       notes: notes,
     });
   }
@@ -98,6 +111,7 @@ class App extends React.Component {
               selected={this.state.selectedCount}
               onSelectionCanceled={this.handleSelectionCanceled}
               onDeleteSelected={this.handleDeleteSeleted}
+              onColorSelected={this.handleColorSelected}
             />
           }
           <CreateNoteInput onSubmit={this.handleNoteAdded}/>

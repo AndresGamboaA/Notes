@@ -38,6 +38,10 @@ box-shadow: 0px 0px 8px -3px rgba(105,105,105,1);
     border: 2px solid black;
 }
 
+.selected .select-button {
+    opacity: 1;
+}
+
 .note-options {
     height: 100%;
     display: flex;
@@ -93,7 +97,11 @@ button {
     right: 3px;
 
 }
-
+.selector {
+    bottom: 30px;
+    padding: 4px;
+    right:50px;
+}
 .tags {
     width: 100%;
     display: flex;

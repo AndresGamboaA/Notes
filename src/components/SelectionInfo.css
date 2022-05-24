@@ -23,3 +23,8 @@
     display: flex;
     align-items: center;
 }
+
+.selection-info .selector {
+    bottom: 2px;
+    right: 80px;
+}
