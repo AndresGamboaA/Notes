@@ -100,14 +100,16 @@ class App extends React.Component {
     }
 
     this.setState({
+      ...this.state,
       selectedCount: count,
       sideMenuActive: false,
-      todos: notes,
+      notes: notes,
     });
   }
 
   handleSelectionCanceled() {
     this.setState({
+      ...this.state,
       selectedCount: 0,
       notes: this.state.notes.map((note)=>{
         note.selected = false;
@@ -119,6 +121,7 @@ class App extends React.Component {
   handleDeleteSeleted() {
     const notes = this.state.notes.filter(item=>item.selected !== true);
     this.setState({
+      ...this.state,
       selectedCount:0,
       notes: notes,
     });
