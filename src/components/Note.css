@@ -60,7 +60,7 @@ box-shadow: 0px 0px 8px -3px rgba(105,105,105,1);
     transition: all 0.5s;
 }
 
-button {
+.note>button {
     cursor: pointer;
     border: none;
     padding: 4px;

@@ -1,7 +1,7 @@
 import React from "react";
 import './SelectionInfo.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faPalette, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faXmark, faPalette, faTrash } from '@fortawesome/free-solid-svg-icons'
 import ColorSelector from './ColorSelector';
 import { useState } from 'react';
 
@@ -20,7 +20,7 @@ function SelectionInfo(props) {
             <button onClick={()=>props.onSelectionCanceled()}>
                 <span className="option-icons"><FontAwesomeIcon icon={faXmark} size="2x" color="black"/></span>
             </button>
-            <h3>{`${props.selected} ${props.selected==1?"note":"notes"} selected`}</h3>
+            <h3>{`${props.selected} ${props.selected===1?"note":"notes"} selected`}</h3>
         </div>
         <div className="options">
             <button onClick={()=>{showColors(!isColorsShown)}}><span className="option-icons"><FontAwesomeIcon icon={faPalette} size="lg" color="black"/></span></button>
