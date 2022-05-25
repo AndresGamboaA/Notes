@@ -1,5 +1,5 @@
 # Notes
-Notes is a simple but efficient notetaking app built in React.
+Notes is a simple but efficient note taking app built in React.
 
 ![Alt text](screenshots/screenshot1.png?raw=true "Title")
 
