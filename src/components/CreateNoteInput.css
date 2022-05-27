@@ -29,7 +29,8 @@
     min-height: 50px;
     flex-direction: row;
     transition: all 0.4s;
-
+    padding: auto;
+  padding-top:17px;
 }
 
 .create-note input, textarea {

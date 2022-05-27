@@ -1,78 +1,132 @@
-import React, {useEffect, useState} from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPalette, faEllipsisV } from '@fortawesome/free-solid-svg-icons'
-import './CreateNoteInput.css'
-import ColorSelector from './ColorSelector';
+import React, { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPalette, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import "./CreateNoteInput.css";
+import ColorSelector from "./ColorSelector";
 
 function CreateNoteInput(props) {
-    const [isActive, setActive] = useState("");
-    const [title, setTitle] = useState("");
-    const [note, setNote] = React.useState("");
-    const [isColorsShown, showColors] = useState(false);
-    const [color, setColor] = useState("#FFFFFF");
-    const [tags, setTags] = useState(props.tag);
+   const [state, setState] = useState({
+      title: "",
+      note: "",
+      colorsVisible: false,
+      color: "#FFFFFF",
+      tags: props.tag,
+      active: false,
+   });
 
-    useEffect(()=>{
-        setTags(props.tag==="All Notes"?"":props.tag);
-    }, [props.tag]);
+   useEffect(() => {
+      setState(prevState => ({
+         ...prevState,
+         tags: props.tag === "All Notes" ? "" : props.tag 
+      }))
+   }, [props])
 
-    const handle_color_selected = (color)=>{
-     showColors(false);
-     setColor(color)
-    }
+   const handleColorSelected = (color) => {
+      setState({ ...state, color: color, colorsVisible: false });
+   };
 
-    const classes = isActive? "create-note active": "create-note inactive";
+   const handleChange = ({ target: { name, value } }) => {
+      setState({ ...state, [name]: value });
+   };
 
-    return (
-        <div className={classes} style={{backgroundColor:color}}>
-            {isActive && <input type="text" placeholder="Title" 
-                onFocus={()=>setActive(true)}
-                onChange={(e)=>{setTitle(e.target.value)}}
-                value={title}
-            />}
-            <textarea
-                placeholder="Create note..."
-                onFocus={()=>{
-                    setActive(true)
-                }}
-                onChange={(e)=>{ setNote(e.target.value) }}
-                value={note}>
-            </textarea>
-            {isActive && <input
-                onChange={(e)=>{setTags(e.target.value)}}
-                value={tags}
-                placeholder="Tags: Tag1 tag2"
-            />}
-            {isActive && <div className="create-note-options-container">
-                <div >
-                     <button className="action" onClick={()=>{
-                        props.onSubmit({id:"", color:color,tags:tags.split(" "),  title:title, text:note});
-                        setActive(false);
-                        setTitle("");
-                        setNote("");
-                        setColor("#FFFFFF");
-                        if (props.tag === "All Notes") {
-                            setTags("");
-                        }
-                     }}>Add</button>
-                     <button className="action" onClick={()=>{
-                        setActive(false);
-                        setTitle("");
-                        setNote("");
-                        setColor("#FFFFFF");
-                        if (props.tag === "All Notes") {
-                            setTags("");
-                        }
-                     }}>Close</button>
-                </div>
-                <div>
-                    <button><span onClick={()=>{showColors(true)}} className="option-icons"><FontAwesomeIcon icon={faPalette} size="lg" color="black"/></span></button>
-                </div>
-                {isColorsShown && <ColorSelector onColorSelected={handle_color_selected}/>}
-                
-            </div>}
-        </div>
-    )
+   const restart = () => {
+      setState({
+         active: false,
+         title: "",
+         note: "",
+         color: "#FFFFFF",
+         colorVisible: false,
+         tags: props.tag === "All Notes" ? "" : state.tags,
+      });
+   };
+
+   const classes = state.active ? "create-note active" : "create-note inactive";
+
+   return (
+      <div className={classes} style={{ backgroundColor: state.color }}>
+         {state.active && (
+            <input
+               type="text"
+               name="title"
+               placeholder="Title"
+               onFocus={() => setState({ ...state, active: true })}
+               onChange={(e) => {
+                  handleChange(e);
+               }}
+               value={state.title}
+            />
+         )}
+         <textarea
+            name="note"
+            placeholder="Create note..."
+            onFocus={() => {
+               setState({ ...state, active: true });
+            }}
+            onChange={(e) => {
+               handleChange(e);
+            }}
+            value={state.note}
+         ></textarea>
+         {state.active && (
+            <input
+               onChange={(e) => {
+                  handleChange(e);
+               }}
+               name="tags"
+               value={state.tags}
+               placeholder="Tags: Tag1 tag2"
+            />
+         )}
+         {state.active && (
+            <div className="create-note-options-container">
+               <div>
+                  <button
+                     className="action"
+                     onClick={() => {
+                        props.onSubmit({
+                           id: "",
+                           color: state.color,
+                           tags: state.tags.split(" "),
+                           title: state.title,
+                           text: state.note,
+                        });
+                        restart();
+                     }}
+                  >
+                     Add
+                  </button>
+                  <button
+                     className="action"
+                     onClick={() => {
+                        restart();
+                     }}
+                  >
+                     Close
+                  </button>
+               </div>
+               <div>
+                  <button>
+                     <span
+                        onClick={() => {
+                           setState({...state, colorsVisible:true})
+                        }}
+                        className="option-icons"
+                     >
+                        <FontAwesomeIcon
+                           icon={faPalette}
+                           size="lg"
+                           color="black"
+                        />
+                     </span>
+                  </button>
+               </div>
+               {state.colorsVisible && (
+                  <ColorSelector onColorSelected={handleColorSelected} />
+               )}
+            </div>
+         )}
+      </div>
+   );
 }
 
 export default CreateNoteInput;

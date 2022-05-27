@@ -5,7 +5,7 @@ import './Note.css';
 import ColorSelector from './ColorSelector';
 
 function Note(props) {
-  const [isColorsShown, showColors] = useState(false);
+   const [isColorsShown, showColors] = useState(false);
   
   const handle_color_selected = (color)=>{
    showColors(false);
