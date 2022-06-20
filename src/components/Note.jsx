@@ -1,4 +1,4 @@
-import React ,{useState} from "react";
+import {useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faPalette, faCheck } from '@fortawesome/free-solid-svg-icons'
 import './Note.css';
@@ -24,7 +24,7 @@ function Note(props) {
             </div>
             <div className="tags">
                {props.note.tags.map(tag=>{
-                  return <div className="tag">{tag}</div>
+                  return <div key={tag} className="tag">{tag}</div>
                })}
             </div>
             <div className="note-options-container">
